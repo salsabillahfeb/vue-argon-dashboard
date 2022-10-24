@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { certCookies } from "../plugins/cookies";
+import { certCookies } from "@/plugins/cookies";
 import routes from "./routes";
 
 const router = createRouter({

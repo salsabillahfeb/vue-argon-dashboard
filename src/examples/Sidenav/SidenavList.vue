@@ -7,7 +7,7 @@
       <li class="nav-item">
         <sidenav-item
           url="/dashboard"
-          :class="getRoute() === 'dashboard-default' ? 'active' : ''"
+          :class="getRoute() === 'default' ? 'active' : ''"
           :navText="this.$store.state.isRTL ? 'لوحة القيادة' : 'Dashboard'"
         >
           <template v-slot:icon>
@@ -42,7 +42,7 @@
       <li class="nav-item">
         <sidenav-item
           url="/dashboard/todo"
-          :class="getRoute() === 'profile' ? 'active' : ''"
+          :class="getRoute() === 'todo' ? 'active' : ''"
           :navText="this.$store.state.isRTL ? 'حساب تعريفي' : 'ToDo'"
         >
           <template v-slot:icon>
@@ -90,9 +90,9 @@
       </li>
       <li class="nav-item">
         <sidenav-item
-          url="/auth/signin"
-          :class="getRoute() === 'signin' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'اشتراك' : 'Sign In'"
+          url="/auth/signup"
+          :class="getRoute() === 'signup' ? 'active' : ''"
+          :navText="this.$store.state.isRTL ? 'اشتراك' : 'Register'"
         >
           <template v-slot:icon>
             <i class="ni ni-collection text-info text-sm opacity-10"></i>
