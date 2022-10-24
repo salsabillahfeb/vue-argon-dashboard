@@ -7,7 +7,7 @@
       <li class="nav-item">
         <sidenav-item
           url="/dashboard"
-          :class="getRoute() === 'default' ? 'active' : ''"
+          :class="getRoute() === 'dashboard-default' ? 'active' : ''"
           :navText="this.$store.state.isRTL ? 'لوحة القيادة' : 'Dashboard'"
         >
           <template v-slot:icon>
@@ -36,6 +36,17 @@
         >
           <template v-slot:icon>
             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item
+          url="/dashboard/todo"
+          :class="getRoute() === 'profile' ? 'active' : ''"
+          :navText="this.$store.state.isRTL ? 'حساب تعريفي' : 'ToDo'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-check-bold text-dark text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
@@ -79,12 +90,24 @@
       </li>
       <li class="nav-item">
         <sidenav-item
-          url="/auth/signup"
-          :class="getRoute() === 'signup' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'اشتراك' : 'Sign Up'"
+          url="/auth/signin"
+          :class="getRoute() === 'signin' ? 'active' : ''"
+          :navText="this.$store.state.isRTL ? 'اشتراك' : 'Sign In'"
         >
           <template v-slot:icon>
             <i class="ni ni-collection text-info text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item
+          url="/auth/signup"
+          :class="getRoute() === 'signup' ? 'active' : ''"
+          :navText="this.$store.state.isRTL ? 'اشتراك' : 'LogOut'"
+          @click="logout"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-button-power text-danger text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
@@ -101,6 +124,8 @@
 <script>
 import SidenavItem from "./SidenavItem.vue";
 import SidenavCard from "./SidenavCard.vue";
+import { mapActions } from "pinia";
+import d$auth from "@/stores/auth";
 
 export default {
   name: "SidenavList",
@@ -122,7 +147,16 @@ export default {
     getRoute() {
       const routeArr = this.$route.path.split("/");
       return routeArr[1];
-    }
+    },
+    ...mapActions(d$auth, ["a$logout"]),
+    logout() {
+      try {
+        this.a$logout();
+        this.$router.replace({ name: "Signin" });
+      } catch (e) {
+        console.log(e);
+      }
+    },
   }
 };
 </script>

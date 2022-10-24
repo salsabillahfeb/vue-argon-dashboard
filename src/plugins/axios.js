@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 import { delCookies, getCookies } from "./cookies";
 
 // Resful API Config
